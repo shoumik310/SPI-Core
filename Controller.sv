@@ -8,7 +8,7 @@ module controller(
 	output logic w_fifo_en,
 	output logic r_fifo_en,
 	
-	output spif,
+	output logic spif,
 	
 	output logic spi_transfer_en
 );

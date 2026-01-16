@@ -3,9 +3,8 @@ module shift_reg #(parameter w=8)(
   input        clk, 
                reset,
                transfer_en,
-	       transfer_idle,
   input        [w-1:0] w_buf_out,
-  input  wire MISO,
+  input        MISO,
 
   output logic MOSI, 
   output logic [w-1:0] r_buf_in  
