@@ -25,14 +25,16 @@ counter #(.MAX_COUNT(8)) byte_counter (
 	.clk(clk),
 	.reset(reset),
 	.clr(byte_counter_clr),
+	.inc(1'b1),
 	.status(byte_counter_status)
 );
 
 
 counter #(.MAX_COUNT(4)) block_counter (
-	.clk(block_counter_inc),
+	.clk(clk),
 	.reset(reset),
 	.clr(block_counter_clr),
+	.inc(block_counter_inc),
 	.status(block_counter_status)
 );
 
@@ -106,6 +108,7 @@ module counter(
 	input clk,
 	input reset,
 	input clr,
+	input inc,
 	
 	output logic status
 );
@@ -122,7 +125,7 @@ always_ff @ (posedge clk) begin
 	if(reset || clr)
 		cnt <= 0;
 	else begin
-		if (!status) begin
+		if (!status && inc) begin
 			cnt <= cnt + 1;
 		end
 	end
